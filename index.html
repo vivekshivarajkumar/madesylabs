@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Principles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Mafs CSS for interactive math visualizations -->
+    <link rel="stylesheet" href="https://esm.sh/mafs@0.18.2/index.css" />
+    <style>
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: #050508;
+      }
+      .hud-clip {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+      }
+      .scanlines {
+        position: relative;
+        overflow: hidden;
+      }
+      .scanlines::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(18, 16, 16, 0) 50%,
+          rgba(0, 0, 0, 0.1) 50%
+        );
+        background-size: 100% 4px;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .glow-text {
+        text-shadow: 0 0 8px rgba(19, 236, 146, 0.4);
+      }
+      .glow-border {
+        box-shadow: 0 0 15px rgba(19, 236, 146, 0.1);
+      }
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      /* Mafs Overrides to match theme */
+      .MafsView {
+        background: transparent !important;
+      }
+      .MafsView svg {
+        background: transparent !important;
+      }
+      .mafs-grid {
+        stroke: rgba(19, 236, 146, 0.05) !important;
+      }
+      /* Individual axis lines can be colored if needed, but segments are clearer */
+      .mafs-axis {
+        stroke: rgba(255, 255, 255, 0.2) !important;
+      }
+      .mafs-axis-labels {
+        fill: rgba(255, 255, 255, 0.4) !important;
+        font-family: 'Space Grotesk', monospace !important;
+        font-size: 10px !important;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050508;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #13ec9244;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #13ec9288;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#13ec92',
+              secondary: '#a855f7',
+              void: '#050508',
+            },
+            fontFamily: {
+              sans: ['Space Grotesk', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@1.41.0",
+    "mafs": "https://esm.sh/mafs@0.18.2?external=react,react-dom",
+    "d3": "https://esm.sh/d3@7.9.0",
+    "p5": "https://esm.sh/p5@1.9.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
